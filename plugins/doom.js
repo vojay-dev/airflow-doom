@@ -3,8 +3,8 @@ import GameComponent from "./game.js";
 function DoomComponent() {
     return GameComponent({
         id: "game-container",
-        cssPath: "/doom/doom.css",
-        zipPath: "/doom/doom.zip",
+        cssPath: "/gameflow/game.css",
+        zipPath: "/gameflow/doom.zip",
         exePath: "./DOOM/DOOM.EXE"
     });
 }

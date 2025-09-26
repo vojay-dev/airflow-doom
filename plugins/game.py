@@ -7,7 +7,7 @@ from fastapi.responses import FileResponse
 from starlette.responses import StreamingResponse
 
 PLUGIN_DIR = Path(__file__).parent
-app = FastAPI(title="Doom", version="0.1.0")
+app = FastAPI(title="GameFlow", version="0.1.0")
 
 @app.get("/doom.zip")
 async def serve_doom_zip():
@@ -24,20 +24,12 @@ async def serve_doom_zip():
         },
     )
 
-@app.get("/doom.css")
+@app.get("/game.css")
 async def serve_doom_css():
     return FileResponse(
-        path=str(PLUGIN_DIR / "doom.css"),
+        path=str(PLUGIN_DIR / "game.css"),
         media_type="text/css",
-        filename="doom.css",
-    )
-
-@app.get("/doom.js")
-async def serve_doom_component():
-    return FileResponse(
-        path=str(PLUGIN_DIR / "doom.js"),
-        media_type="application/javascript",
-        filename="doom.js",
+        filename="game.css",
     )
 
 @app.get("/game.js")
@@ -46,6 +38,14 @@ async def serve_game_component():
         path=str(PLUGIN_DIR / "game.js"),
         media_type="application/javascript",
         filename="game.js",
+    )
+
+@app.get("/doom.js")
+async def serve_doom_component():
+    return FileResponse(
+        path=str(PLUGIN_DIR / "doom.js"),
+        media_type="application/javascript",
+        filename="doom.js",
     )
 
 @app.get("/placeholder.jpg")
@@ -58,14 +58,14 @@ async def serve_placeholder_image():
 
 @app.get("/")
 async def root():
-    return { "message": "Doom Plugin Active" }
+    return { "message": "GameFlow Plugin Active" }
 
-class DoomPlugin(AirflowPlugin):
-    name = "doom"
-    fastapi_apps = [{"app": app, "url_prefix": "/doom", "name": "Doom"}]
+class GameFlow(AirflowPlugin):
+    name = "GameFlow"
+    fastapi_apps = [{"app": app, "url_prefix": "/gameflow", "name": "GameFlow"}]
     react_apps = [{
         "name": "Doom",
-        "bundle_url": "/doom/doom.js",
+        "bundle_url": "/gameflow/doom.js",
         "destination": "dag",
         "url_route": "doom",
     }]
