@@ -1,34 +1,27 @@
 from pathlib import Path
 
+import requests
 from airflow.plugins_manager import AirflowPlugin
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
+from starlette.responses import StreamingResponse
 
 PLUGIN_DIR = Path(__file__).parent
 app = FastAPI(title="Doom", version="0.1.0")
 
-@app.get("/wdosbox.js")
-async def serve_wdosbox_worker():
-    return FileResponse(
-        path=str(PLUGIN_DIR / "wdosbox.js"),
-        media_type="application/javascript",
-        filename="wdosbox.js",
-    )
-
-@app.get("/wdosbox.wasm")
-async def serve_wdosbox_wasm():
-    return FileResponse(
-        path=str(PLUGIN_DIR / "wdosbox.wasm"),
-        media_type="application/wasm",
-        filename="wdosbox.wasm",
-    )
-
 @app.get("/DOOM-@evilution.zip")
 async def serve_doom_zip():
-    return FileResponse(
-        path=str(PLUGIN_DIR / "DOOM-@evilution.zip"),
+    url = "https://github.com/thedoggybrad/doom_on_js-dos/raw/refs/heads/main/DOOM-@evilution.zip"
+    r = requests.get(url, stream=True)
+    r.raise_for_status()
+
+    return StreamingResponse(
+        r.iter_content(chunk_size=8192),
         media_type="application/zip",
-        filename="DOOM-@evilution.zip",
+        headers={
+            "Content-Disposition": 'attachment; filename="DOOM-@evilution.zip"',
+            "Access-Control-Allow-Origin": "*",
+        },
     )
 
 @app.get("/doom.css")
@@ -60,4 +53,3 @@ class DoomPlugin(AirflowPlugin):
         "destination": "dag",
         "url_route": "doom",
     }]
-
