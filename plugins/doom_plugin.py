@@ -9,7 +9,7 @@ from starlette.responses import StreamingResponse
 PLUGIN_DIR = Path(__file__).parent
 app = FastAPI(title="Doom", version="0.1.0")
 
-@app.get("/DOOM-@evilution.zip")
+@app.get("/doom.zip")
 async def serve_doom_zip():
     url = "https://github.com/thedoggybrad/doom_on_js-dos/raw/refs/heads/main/DOOM-@evilution.zip"
     r = requests.get(url, stream=True)

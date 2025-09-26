@@ -29,7 +29,7 @@ function DoomComponent() {
 
                 new window.Dosbox({
                     id: "doom-plugin-container",
-                    onload: (dosbox) => dosbox.run("/doom/DOOM-@evilution.zip", "./DOOM/DOOM.EXE")
+                    onload: (dosbox) => dosbox.run("/doom/doom.zip", "./DOOM/DOOM.EXE")
                 });
             };
         };
