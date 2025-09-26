@@ -1,4 +1,4 @@
-#doom-plugin-container {
+#game-container {
     position: relative;
     margin: auto;
     background-color: black;
@@ -7,20 +7,20 @@
     aspect-ratio: 4 / 3;
 }
 
-#doom-plugin-container > .dosbox-container,
-#doom-plugin-container .dosbox-canvas,
-#doom-plugin-container .dosbox-video-layer {
+#game-container > .dosbox-container,
+#game-container .dosbox-canvas,
+#game-container .dosbox-video-layer {
     width: 100% !important;
     height: 100% !important;
     top: 0 !important;
     left: 0 !important;
 }
 
-#doom-plugin-container > .dosbox-container > .dosbox-overlay {
-    background: url("https://thedoggybrad.github.io/doom_on_js-dos/DOOM.png") center/contain no-repeat;
+#game-container > .dosbox-container > .dosbox-overlay {
+    background: url("placeholder.jpg") center/contain no-repeat;
 }
 
-#doom-plugin-container > .dosbox-container > .dosbox-overlay > .dosbox-start {
+#game-container > .dosbox-container > .dosbox-overlay > .dosbox-start {
     border-radius: 17px;
     background-color: rgba(90, 90, 90, 0.7);
     padding: 10px 20px;

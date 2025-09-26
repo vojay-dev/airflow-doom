@@ -48,6 +48,14 @@ async def serve_game_component():
         filename="game.js",
     )
 
+@app.get("/placeholder.jpg")
+async def serve_placeholder_image():
+    return FileResponse(
+        path=str(PLUGIN_DIR / "placeholder.jpg"),
+        media_type="image/jpeg",
+        filename="placeholder.jpg",
+    )
+
 @app.get("/")
 async def root():
     return { "message": "Doom Plugin Active" }
