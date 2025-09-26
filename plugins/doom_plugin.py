@@ -33,11 +33,19 @@ async def serve_doom_css():
     )
 
 @app.get("/doom.js")
-async def serve_react_component():
+async def serve_doom_component():
     return FileResponse(
         path=str(PLUGIN_DIR / "doom.js"),
         media_type="application/javascript",
         filename="doom.js",
+    )
+
+@app.get("/game.js")
+async def serve_game_component():
+    return FileResponse(
+        path=str(PLUGIN_DIR / "game.js"),
+        media_type="application/javascript",
+        filename="game.js",
     )
 
 @app.get("/")
