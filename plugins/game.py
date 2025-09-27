@@ -24,6 +24,21 @@ async def serve_doom_zip():
         },
     )
 
+@app.get("/prince.zip")
+async def serve_prince_zip():
+    url = "https://vfat.classicreload.com/msdos_Prince_of_Persia_1990/Prince_of_Persia_1990.zip"
+    r = requests.get(url, stream=True)
+    r.raise_for_status()
+
+    return StreamingResponse(
+        r.iter_content(chunk_size=8192),
+        media_type="application/zip",
+        headers={
+            "Content-Disposition": 'attachment; filename="DOOM-@evilution.zip"',
+            "Access-Control-Allow-Origin": "*",
+        },
+    )
+
 @app.get("/game.css")
 async def serve_doom_css():
     return FileResponse(
@@ -48,6 +63,14 @@ async def serve_doom_component():
         filename="doom.js",
     )
 
+@app.get("/prince.js")
+async def serve_doom_component():
+    return FileResponse(
+        path=str(PLUGIN_DIR / "prince.js"),
+        media_type="application/javascript",
+        filename="doom.js",
+    )
+
 @app.get("/placeholder.jpg")
 async def serve_placeholder_image():
     return FileResponse(
@@ -68,4 +91,9 @@ class GameFlow(AirflowPlugin):
         "bundle_url": "/gameflow/doom.js",
         "destination": "dag",
         "url_route": "doom",
+    }, {
+        "name": "Prince of Persia",
+        "bundle_url": "/gameflow/prince.js",
+        "destination": "dag",
+        "url_route": "prince",
     }]
