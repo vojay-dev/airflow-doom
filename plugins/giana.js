@@ -4,8 +4,8 @@ function PrinceComponent() {
     return GameComponent({
         id: "game-container",
         cssPath: "/gameflow/game.css",
-        zipPath: "/gameflow/prince.zip",
-        exePath: "./Prince\ of\ Persia/PRINCE.EXE"
+        zipPath: "/gameflow/giana.zip",
+        exePath: "./GIANAWEB.BAT"
     });
 }
 

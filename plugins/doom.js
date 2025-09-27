@@ -4,10 +4,10 @@ function DoomComponent() {
     return GameComponent({
         id: "game-container",
         cssPath: "/gameflow/game.css",
-        zipPath: "/gameflow/doom.zip",
-        exePath: "./DOOM/DOOM.EXE"
+        zipPath: "/gameflow/giana.zip",
+        exePath: "./DOOMWEB.BAT"
     });
 }
 
-globalThis["Doom"] = DoomComponent;
+globalThis["Giana"] = DoomComponent;
 globalThis.AirflowPlugin = DoomComponent;
