@@ -4,7 +4,7 @@ function DoomComponent() {
     return GameComponent({
         id: "game-container",
         cssPath: "/gameflow/game.css",
-        zipPath: "/gameflow/giana.zip",
+        zipPath: "/gameflow/doom.zip",
         exePath: "./DOOMWEB.BAT"
     });
 }
