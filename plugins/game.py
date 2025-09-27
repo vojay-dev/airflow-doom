@@ -36,6 +36,10 @@ async def doom_zip():
 async def giana_zip():
     return _stream_proxy("https://image.dosgamesarchive.com/games/giana-gus.zip", "giana.zip")
 
+@app.get("/war2.zip")
+async def giana_zip():
+    return _stream_proxy("https://image.dosgamesarchive.com/games/war2demo-box.zip", "war2.zip")
+
 @app.get("/game.css")
 async def game_css():
     return _serve_static("game.css", "text/css")
@@ -52,6 +56,10 @@ async def doom_js():
 async def giana_js():
     return _serve_static("giana.js", "application/javascript")
 
+@app.get("/war2.js")
+async def war2_js():
+    return _serve_static("war2.js", "application/javascript")
+
 @app.get("/placeholder.jpg")
 async def placeholder_image():
     return _serve_static("placeholder.jpg", "image/jpeg")
@@ -66,5 +74,8 @@ class GameFlow(AirflowPlugin):
     react_apps = [
         { "name": "Doom", "bundle_url": "/gameflow/doom.js", "destination": "dag", "url_route": "dag-doom", },
         { "name": "Doom", "bundle_url": "/gameflow/doom.js", "destination": "nav", "url_route": "doom", },
+        { "name": "Giana Sisters", "bundle_url": "/gameflow/giana.js", "destination": "dag", "url_route": "dag-giana", },
         { "name": "Giana Sisters", "bundle_url": "/gameflow/giana.js", "destination": "nav", "url_route": "giana", },
+        { "name": "Warcraft II", "bundle_url": "/gameflow/war2.js", "destination": "dag", "url_route": "dag-war2", },
+        { "name": "Warcraft II", "bundle_url": "/gameflow/war2.js", "destination": "nav", "url_route": "war2", },
     ]
